@@ -1,19 +1,14 @@
 var express = require('express');
 const Users = require('../../model/Users');
-const rest = express.Router();
+const userRestController = express.Router();
 
 
-rest.get('/users',async (req, res) => {
+userRestController.get('/users',async (req, res) => {
     const data = await Users.find();
     res.status(200).json(data);
 })
 
-
-rest.get('/users/{name}')
-
-
-rest.post('/addUsers', async (req, res) => {
-    console.log("Value of req is ", req.body)
+userRestController.post('/addUsers', async (req, res) => {
     if(!req.body.firstName) {
         res.status(400);
         console.log("please add some data");
@@ -22,11 +17,9 @@ rest.post('/addUsers', async (req, res) => {
     try {
         console.log(`here is the first name ${req.body.lastName}`)
         data = await Users.create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
+            name: req.body.name,
             emailId: req.body.emailId,
-            age: req.body.age,
-            phoneNumber: req.body.phoneNumber,
+            password: req.body.age,
         });
     }catch (e) {
         data = e.body;
@@ -36,4 +29,8 @@ rest.post('/addUsers', async (req, res) => {
     res.status(200).json({"message": "All Good"});
 })
 
-module.exports = rest;
+userRestController.post('/authenticate', async (req,res) => {
+
+})
+
+module.exports = userRestController;

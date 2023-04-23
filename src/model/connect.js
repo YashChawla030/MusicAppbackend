@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-var url = "mongodb://localhost:27017/stressibye";
+var url = "mongodb://localhost:27017/musicappbackend";
 
 const connectDB = async () => {
     try {
