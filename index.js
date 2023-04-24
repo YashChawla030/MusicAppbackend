@@ -13,6 +13,7 @@ app.use(bodyParser.json())
 // here we write all the API paths
 app.use('/',userRestController)
 app.use('/',musicRestController);
+app.use('/music',express.static('music'));
 
 app.get('/', function (req, res) {
     console.log("Howdy msg display")

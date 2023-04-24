@@ -11,7 +11,7 @@ var MusicList =mongoose.Schema({
     },
     year: {
         type: Date,
-        require: [true, "please enter release date"]
+        default: Date.now
     },
     musicLink: {
         type: String,
