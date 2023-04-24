@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 var fs = require("fs");
+const path = require("path");
 
 connectDB()
 
@@ -13,7 +14,12 @@ app.use(bodyParser.json())
 // here we write all the API paths
 app.use('/',userRestController)
 app.use('/',musicRestController);
-app.use('/music',express.static('music'));
+
+let currentModulePath = __dirname;
+currentModulePath = path.join(currentModulePath,'/src/music')
+
+console.log(currentModulePath)
+app.use(express.static(currentModulePath));
 
 app.get('/', function (req, res) {
     console.log("Howdy msg display")
