@@ -30,7 +30,26 @@ userRestController.post('/addUsers', async (req, res) => {
 })
 
 userRestController.post('/authenticate', async (req,res) => {
-
+    if(!req.body.username) {
+        res.status(400);
+        console.log("please send data");
+    }
+    let data = null;
+    try {
+        let username = req.body.username;
+        let password = req.body.password;
+        let res = Users.findOne({
+            name: username
+        })
+        if(res) {
+            console.log(res)
+        }
+    }catch (e) {
+        data = e.body;
+        console.log(`please check data ${e}`);
+        res.status(400).json({error: data})
+    }
+    res.status(200).json({"authenticate": true});
 })
 
 module.exports = userRestController;
