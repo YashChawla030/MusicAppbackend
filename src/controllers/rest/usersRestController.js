@@ -19,7 +19,7 @@ userRestController.post('/addUsers', async (req, res) => {
         data = await Users.create({
             name: req.body.name,
             emailId: req.body.emailId,
-            password: req.body.age,
+            password: req.body.password,
         });
     }catch (e) {
         data = e.body;
