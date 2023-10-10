@@ -25,7 +25,8 @@ musicRestController.post('/addMusic', async (req, res) => {
             name: req.body.name,
             artist: req.body.artist,
             year: req.body.year,
-            musicLink: path.join(currentModulePath,req.body.name+".mp3")
+            musicLink: `http://localhost:8081/${req.body.name}.mp3`,
+            imgSrc: `http://localhost:8081/${req.body.name}.jpg`,
         });
     }catch (e) {
         data = e.body;
